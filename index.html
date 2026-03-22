@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti 💛</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #fff7c2, #ffe066);
+    overflow: hidden;
+}
+
+.nombre {
+    text-align: center;
+    font-size: 60px;
+    font-weight: bold;
+    color: #d4a200;
+    margin-top: 20px;
+    animation: brillo 2s infinite alternate;
+}
+
+@keyframes brillo {
+    from { text-shadow: 0 0 10px #fff; }
+    to { text-shadow: 0 0 30px #ffcc00; }
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    width: 700px;
+    margin: 20px auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+img {
+    width: 200px;
+    border-radius: 10px;
+}
+
+.mensaje {
+    font-size: 18px;
+}
+
+.cronometro {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #b8860b;
+}
+
+.corazon {
+    position: fixed;
+    color: red;
+    font-size: 20px;
+    animation: flotar 5s linear infinite;
+}
+
+@keyframes flotar {
+    0% {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+
+/* BOTÓN MÚSICA */
+.boton-musica {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ffcc00;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+</style>
+</head>
+<script>
+function activarMusica() {
+    const iframe = document.createElement("iframe");
+    iframe.style.display = "none";
+    iframe.src = "https://www.youtube.com/embed/xkmNhe7lnLw?autoplay=1&loop=1&playlist=xkmNhe7lnLw";
+    document.body.appendChild(iframe);
+}
+</script>
+
+<body>
+
+
+<!-- NOMBRE -->
+<div class="nombre">WENDY 💛</div>
+
+<div class="container">
+    <div class="content">
+
+        <img src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651">
+
+        <div class="mensaje">
+            <p>
+                Desde que llegaste a mi vida, todo empezó a tener un sentido diferente. No sé en qué momento te volviste tan importante para mí, pero ahora no imagino mis días sin pensarte, sin hablar contigo o sin sonreír por algo que dijiste.
+
+Me gusta cómo eres, cómo me tratas, cómo haces que incluso los días normales se sientan especiales. No eres perfecta, pero para mí tienes algo que nadie más tiene, algo que me hace elegirte una y otra vez sin dudarlo.
+
+A veces no soy bueno diciendo todo lo que siento, pero quiero que sepas que lo que hay en mí es real. Que cada momento contigo lo guardo, que cada risa, cada palabra y cada detalle se quedan conmigo.
+
+Desde el 18 de noviembre de 2025 a las 6:53 pm, cuando te envié el primer mensaje, sin darme cuenta empezó algo muy especial para mí… y con el tiempo ese sentimiento solo ha crecido más.
+
+No sé qué nos depare el futuro, pero sí sé que hoy me haces feliz, y que mientras esté contigo quiero hacer las cosas bien, cuidarte, respetarte y demostrarte con hechos todo lo que significas para mí.
+
+Si algún día dudas de lo que siento, solo recuerda esto: no es algo pasajero, no es algo por costumbre… es porque eres tú, y porque contigo todo se siente mejor 💛  
+                
+            </p>
+        </div>
+    </div>
+
+    <div class="cronometro" id="contador"></div>
+</div>
+
+<!-- AUDIO -->
+<audio id="musica" loop>
+  <source src="FLORES PARA WENDY/cancion/cancion.mp3">
+</audio><button class="boton-musica" onclick="toggleMusica()">🔊 Música</button>
+
+<script>
+
+/* FECHA */
+let fechaInicio = new Date("2025-11-18T18:53:00");
+
+/* CONTADOR */
+function actualizarContador() {
+    const ahora = new Date();
+    const diferencia = ahora - fechaInicio;
+
+    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+    const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
+    const segundos = Math.floor((diferencia / 1000) % 60);
+
+    document.getElementById("contador").innerHTML = `
+        💛 Te he amado por 💛<br><br>
+        ${dias} días, ${horas} horas,<br>
+        ${minutos} minutos y ${segundos} segundos ✨
+    `;
+}
+
+setInterval(actualizarContador, 1000);
+
+/* CORAZONES */
+function crearCorazon() {
+    const corazon = document.createElement("div");
+    corazon.classList.add("corazon");
+    corazon.innerHTML = "💖";
+
+    corazon.style.left = Math.random() * 100 + "vw";
+    corazon.style.fontSize = (Math.random() * 20 + 10) + "px";
+
+    document.body.appendChild(corazon);
+
+    setTimeout(() => {
+        corazon.remove();
+    }, 5000);
+}
+
+setInterval(crearCorazon, 300);
+
+/* MÚSICA */
+const musica = document.getElementById("musica");
+
+function toggleMusica() {
+    if (musica.paused) {
+        musica.play();
+    } else {
+        musica.pause();
+    }
+}
+
+/* INTENTO DE AUTOPLAY */
+window.onload = () => {
+    musica.play().catch(() => {
+        console.log("El navegador bloqueó el autoplay");
+    });
+};
+
+</script>
+
+</body>
+</html>
